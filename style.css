@@ -12,3 +12,21 @@
   border-style: solid;
   border-width: 1px;
 }
+
+.container {
+  display: block;
+}
+
+#fiveDay {
+  display: block;
+  border: black;
+  border-style: solid;
+  border-width: 1px;
+}
+
+#weatherBlock {
+  display: block;
+  background-color: blue;
+  color: white;
+  margin-right: 15px;
+}
