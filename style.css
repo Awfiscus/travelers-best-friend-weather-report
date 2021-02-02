@@ -5,3 +5,10 @@
   text-align: center;
   padding: 15px;
 }
+
+#mainResult {
+  display: block;
+  border: black;
+  border-style: solid;
+  border-width: 1px;
+}

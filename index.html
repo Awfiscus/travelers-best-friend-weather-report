@@ -19,15 +19,23 @@
                 <input type="text" class="form-control" placeholder="City's name" aria-label="City's name" aria-describedby="button-addon2" id="searchBar">
                 <button class="btn btn-outline-secondary" type="button" id="searchBtn" >?</button>
             </div>
+            <br>
+            <div>
+                <ul class="list-group"></ul>
+            </div>
           </div>
-          <div class="col-8">
-            <h3>Results</h3>
+          <div class="col-8" id="mainResult">
+            <h2 id="mainTitle">City</h2>
+            <p id="mainTemp">Temp</p>
+            <p id="mainHum">Humidity</p>
+            <p id="mainWind">Wind Speed</p>
+            <p id="mainUV">UV Index</p>
           </div>
         </div>      
     </div>
 
 
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
     <script src="script.js"></script>
 </body>
