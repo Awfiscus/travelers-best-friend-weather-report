@@ -1,4 +1,4 @@
-//need a click event for the search button which search for the weather data of the city
+//GLOBAL VARIABLE DECLARATIONS
 var cities = []
 var searchBtn = $("#searchBtn")
 var fiveDay = ["0", "#1st", "#2nd", "#3rd", "#4th", "#5th"]
@@ -7,10 +7,8 @@ var long = ""
 
 
 
-// function addingDays() {
-//     var 
-// }
 
+//When the search button is clicked it does an ajax call to openweathermap to retrieve a six day forecast for the input value put in
 searchBtn.on("click", function city() {
     var inputData = $("#searchBar").val()
     cities.push(inputData)
@@ -22,24 +20,26 @@ searchBtn.on("click", function city() {
         url: queryURL,
         method: "GET"
     }).then(function(response) {
-        console.log(response);
-        console.log(response.list);
+        //response.list is saved in a results variable for future use
         var results = response.list;
+        //latitude and longitude variables are saved for use in a later function to retrieve uv index
         lat = response.city.coord.lat
         long = response.city.coord.lon
-        //save longitude and latitude to variables for second ajax call to retireve UV index
+        //varibles created to store icon used by OPW API to use icon
         var iconCode = results[0].weather[0].icon
-        console.log(iconCode);
         var iconUrl = "http://openweathermap.org/img/w/" + iconCode + ".png"
+        //variables created to format date given by OPW API into something legible by the user
         var date =new Date(results[0].dt * 1000)
         var localTime = date.toLocaleString()
+        //varible created for DOM element
         var mainTitle = $("#mainTitle")
+        //assinging DOM elements values based on response from OWM
         mainTitle.text(response.city.name + " " + localTime)
         $("#iconTitle").attr("src", iconUrl)
         $("#mainTemp").text("Temprature: " + results[0].temp.day + " °F")
         $("#mainHum").text("Humidity: " + results[0].humidity + "%")
         $("#mainWind").text("Wind Speed: " + results[0].speed + " MPH")
-        
+        //for loop used to populate the information for 5 day for cast
         for(var i = 1; i < results.length; i++) {
            var iconCode = results[i].weather[0].icon
            var iconUrl = "http://openweathermap.org/img/w/" + iconCode + ".png"
@@ -51,7 +51,7 @@ searchBtn.on("click", function city() {
            $(fiveDay[i]).children(".symbol").attr("src", iconUrl)
 
         }
-        console.log(response.city.coord.lat);
+        //runs function to retrieve uv index
         retrieveUV()
 
         localStorage.setItem($("#searchBar").val(), JSON.stringify(results))
@@ -59,8 +59,8 @@ searchBtn.on("click", function city() {
 })
 
 
-//make a function for second ajax call to retrieve UV index
 
+//function to retieve uvindex and then assing it into DOM
 function retrieveUV() {
     var queryURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + long + "&exlude=current,minutely,hourly,alerts&units=imperial&appid=f75ae5425b4709812bd7285990411889"
 
@@ -75,10 +75,9 @@ function retrieveUV() {
     })
 }
 
-    // queryURL for UV index
     
 
-
+//on click creates clickable element for search history
 searchBtn.on("click", function() {
     var newLi = $("<button>")
     newLi.attr("class", "list-group-item")
@@ -88,7 +87,7 @@ searchBtn.on("click", function() {
 
 })
 
-
+//sets up a future event listener for dynamically created DOM elements in the history list and the provides the same function to them that populates the DOM with OWM data
 $(document).on('click','#historyBtn', function() {
 
     var inputData = this.textContent

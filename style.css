@@ -1,3 +1,7 @@
+body {
+  background-color: rgb(222, 230, 240);
+}
+
 .header {
   background-color: black;
   color: white;
@@ -7,10 +11,18 @@
 }
 
 #mainResult {
+  background-color: lightgray;
   display: block;
   border: black;
   border-style: solid;
   border-width: 1px;
+  text-align: center;
+}
+
+.mainText {
+  color: black;
+  font-weight: bold;
+  font-size: 18px;
 }
 
 .container {
@@ -18,15 +30,16 @@
 }
 
 #fiveDay {
+  background-color: lightgray;
   display: block;
   border: black;
   border-style: solid;
   border-width: 1px;
 }
 
-#weatherBlock {
+.weatherBlock {
   display: block;
-  background-color: blue;
+  background-color: rgb(16, 153, 153);
   color: white;
   margin-right: 15px;
 }
