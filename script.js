@@ -70,7 +70,11 @@ function retrieveUV() {
     }).then(function(response) {
         $("#mainUV").text("UV Index: " + response.daily[0].uvi)
         if(parseInt(response.daily[0].uvi) >= 6) {
-            $("#mainUV").attr("id", "danger")
+            $("#mainUV").attr("class", "danger")
+        } else if (parseInt(response.daily[0].uvi) <= 5 && parseInt(response.daily[0].uvi) >= 3) {
+            $("#mainUV").attr("class", "moderate")
+        } else {
+            $("#mainUV").attr("class", "good")
         }
     })
 }

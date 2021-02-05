@@ -44,6 +44,14 @@ body {
   margin-right: 15px;
 }
 
-#danger {
-  background-color: red;
+.danger {
+  color: red;
+}
+
+.good {
+  color: green;
+}
+
+.moderate {
+  color: yellow;
 }
