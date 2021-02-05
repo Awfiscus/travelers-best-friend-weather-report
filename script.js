@@ -4,6 +4,7 @@ var searchBtn = $("#searchBtn")
 var fiveDay = ["0", "#1st", "#2nd", "#3rd", "#4th", "#5th"]
 var lat = ""
 var long = ""
+var clearBtn = $("#clearBtn")
 
 
 
@@ -133,6 +134,7 @@ $(document).on('click','#historyBtn', function() {
 })
 })
 
+//runs at the beggining to populate the search history
 function setSearchHistory() {
     var values = []
 	$("#last-search").empty()
@@ -144,7 +146,7 @@ function setSearchHistory() {
         values.push(JSON.parse(localStorage.getItem(keys[i])));
 	}
 
-	//for loop that applies the newly created array of values from the while loop into divs and attaches them to last-search div
+	//for loop that applies the newly created array of values from the while loop into buttons and attaches them to citiesList
 	for(var index = 0; index < values.length; index++) {
         var newLi = $("<button>")
         newLi.attr("class", "list-group-item")
@@ -153,5 +155,10 @@ function setSearchHistory() {
         $("#citiesList").append(newLi)
 	}
 }
+
+clearBtn.on("click", function() {
+    localStorage.clear()
+    $("#citiesList").empty()
+})
 
 setSearchHistory()
