@@ -128,6 +128,30 @@ $(document).on('click','#historyBtn', function() {
            $(fiveDay[i]).children(".symbol").attr("src", iconUrl)
         }
         retrieveUV()
+
     
 })
 })
+
+function setSearchHistory() {
+    var values = []
+	$("#last-search").empty()
+	keys = Object.keys(localStorage),
+	i = keys.length;
+
+	//function that pushes keys values in locale storage into the array of values until there are none left to push
+	while ( i-- ) {
+        values.push(JSON.parse(localStorage.getItem(keys[i])));
+	}
+
+	//for loop that applies the newly created array of values from the while loop into divs and attaches them to last-search div
+	for(var index = 0; index < values.length; index++) {
+        var newLi = $("<button>")
+        newLi.attr("class", "list-group-item")
+        newLi.attr("id", "historyBtn")
+        newLi.text(keys[index])
+        $("#citiesList").append(newLi)
+	}
+}
+
+setSearchHistory()
